@@ -1,0 +1,12 @@
+name: coma-dp-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is for the Contract Ont Margin Agg SADP.
+layer: "user"
+bundle:
+  resources:
+    - id: quality_purchase
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\contract_ont_margin_agg.yml
+      workspace: public

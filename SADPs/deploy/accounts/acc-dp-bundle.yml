@@ -1,0 +1,12 @@
+name: acc-sadp-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is for the Accounts SADP.
+layer: "user"
+bundle:
+  resources:
+    - id: quality_purchase
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\accounts.yml
+      workspace: public

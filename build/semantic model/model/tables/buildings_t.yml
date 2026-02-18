@@ -1,0 +1,122 @@
+tables:
+  - name: buildings
+    sql: {{ load_sql('buildings') }}
+    description: Defines building-level master data including geographic location,
+      ownership, facility classification, and installed unit distribution.
+      Used for portfolio concentration analysis and campaign targeting by location.
+    public: true
+
+    dimensions:
+      - name: building_eid
+        type: number
+        column: BUILDING_EID
+        primary_key: true
+        public: true
+        description: "Unique identifier for the building."
+
+      - name: building_number
+        type: string
+        column: BUILDING_NUMBER
+        description: "Building reference number."
+
+      - name: building_name
+        type: string
+        column: BUILDING_NAME
+        description: "Name of the building."
+
+      - name: building_facility_type
+        type: string
+        column: BUILDING_FACILITY_TYPE
+        description: "Facility type classification."
+
+      - name: building_ownership_type
+        type: string
+        column: BUILDING_OWNERSHIP_TYPE
+        description: "Ownership type of the building."
+
+      - name: building_full_address
+        type: string
+        column: BUILDING_FULL_ADDRESS
+        description: "Full address of the building."
+
+      - name: city
+        type: string
+        column: CITY
+        description: "City where the building is located."
+
+      - name: state
+        type: string
+        column: STATE
+        description: "State where the building is located."
+
+      - name: zip_code
+        type: number
+        column: ZIP_CODE
+        description: "Postal code of the building."
+
+      - name: country
+        type: string
+        column: COUNTRY
+        description: "Country where the building is located."
+
+      - name: building_latitude
+        type: number
+        column: BUILDING_LATITUDE
+        description: "Latitude coordinate of the building."
+
+      - name: building_longitude
+        type: number
+        column: BUILDING_LONGITUDE
+        description: "Longitude coordinate of the building."
+
+      - name: active_in
+        type: string
+        column: ACTIVE_IN
+        description: "Active region or classification indicator."
+
+      - name: active_units_count
+        type: number
+        column: ACTIVE_UNITS_COUNT
+        description: "Number of active units in the building."
+
+      - name: unit_count
+        type: number
+        column: UNIT_COUNT
+        description: "Total units installed in the building."
+
+      - name: is_single_elevator
+        type: boolean
+        column: IS_SINGLE_ELEVATOR
+        description: "Indicates whether the building has a single elevator."
+
+      - name: geo_type
+        type: string
+        column: GEO_TYPE
+        description: "Geographic classification type."
+
+      - name: geo_price
+        type: string
+        column: GEO_PRICE
+        description: "Geographic pricing classification."
+
+      - name: update_date
+        type: time
+        column: UPDATE_DATE
+        description: "Last update date of the building record."
+
+      - name: building_row_number
+        type: number
+        column: BUILDING_ROW_NUMBER
+        description: "Row number identifier for building record."
+
+    measures:
+      - name: total_buildings
+        sql: "COUNT(DISTINCT {building_eid})"
+        type: number
+        description: "Total number of unique buildings."
+
+      - name: total_units
+        sql: "SUM({unit_count})"
+        type: number
+        description: "Total units across buildings."
+

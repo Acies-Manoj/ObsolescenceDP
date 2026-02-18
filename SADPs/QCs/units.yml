@@ -1,0 +1,96 @@
+name: soda-units-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying major quality checks for the UNITS table
+workspace: public
+
+workflow:
+  dag:
+    - name: soda-units-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 300Mi
+          limits:
+            cpu: 1000m
+            memory: 300Mi
+        logLevel: INFO
+
+        stackSpec:
+          inputs:
+            - dataset: 
+              options:
+                engine: 
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+
+              checks:
+
+           
+                - missing_count(UNIT_ID) = 0:
+                    name: Unit ID should not be null
+                    attributes:
+                      category: Completeness
+
+                - duplicate_count(UNIT_ID) = 0:
+                    name: Unit ID must be unique
+                    attributes:
+                      category: Uniqueness
+
+
+             
+                - missing_count(CONTRACT_EID) = 0:
+                    name: Contract must exist for each unit
+                    attributes:
+                      category: Completeness
+
+                - missing_count(BUILDING_EID) = 0:
+                    name: Building must exist for each unit
+                    attributes:
+                      category: Completeness
+
+
+            
+                - invalid_count(UNIT_STATUS) = 0:
+                    valid values: [Active, Inactive, Decommissioned]
+                    name: Unit status must be valid
+                    attributes:
+                      category: Validity
+
+
+              
+                - invalid_count(IS_OTIS_UNIT) = 0:
+                    valid values: [Y, N]
+                    name: IS_OTIS_UNIT must be Y or N
+                    attributes:
+                      category: Validity
+
+
+        
+
+
+              
+                - min(CAPACITY) > 0:
+                    name: Capacity must be positive
+                    attributes:
+                      category: Validity
+
+
+          
+                - min(TOTAL_VISITS) >= 0:
+                    name: Total visits should not be negative
+                    attributes:
+                      category: Validity
+
+                - min(DAYS_SINCE_LAST_VISIT) >= 0:
+                    name: Days since last visit should not be negative
+                    attributes:
+                      category: Validity

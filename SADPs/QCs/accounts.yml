@@ -1,0 +1,74 @@
+name: soda-accounts-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the Accounts data
+workspace: public
+workflow:
+  dag:
+    - name: soda-accounts-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO # WARNING, ERROR, DEBUG
+        stackSpec:
+          inputs:
+            - dataset: 
+              options:
+                engine: 
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+              checks:
+
+                # Schema
+                - schema:
+                    name: Data types of key columns should be valid
+                    fail:
+                      when wrong column type:
+                        account_id: varchar
+                        customer_id: varchar
+                        sscrm_customer_id: varchar
+                        primary_contact_email1: varchar
+                        primary_contact_phone1: varchar
+                    attributes:
+                      category: Schema
+                      title: Validate data types of critical account columns
+
+                # Uniqueness
+                - duplicate_count(account_id) = 0:
+                    name: Account ID should not be duplicated
+                    attributes:
+                      category: Uniqueness
+                      title: Validate uniqueness of Account ID
+
+                - duplicate_count(customer_id) = 0:
+                    name: Customer ID should not be duplicated
+                    attributes:
+                      category: Uniqueness
+                      title: Validate uniqueness of Customer ID
+
+                # Completeness
+                - missing_count(account_id) = 0:
+                    name: Account ID should not be missing
+                    attributes:
+                      category: Completeness
+                      title: Validate presence of Account ID
+
+                - missing_count(primary_contact_email1) = 0:
+                    name: Primary Contact Email should not be missing
+                    attributes:
+                      category: Completeness
+                      title: Validate presence of Primary Contact Email
+
+              

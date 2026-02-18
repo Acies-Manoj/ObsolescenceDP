@@ -1,0 +1,12 @@
+name: br-sadp-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is for the Branch SADP.
+layer: "user"
+bundle:
+  resources:
+    - id: quality_purchase
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\branch.yml
+      workspace: public

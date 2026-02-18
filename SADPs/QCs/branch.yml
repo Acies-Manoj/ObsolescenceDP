@@ -1,0 +1,67 @@
+name: soda-branch-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the BRANCH table
+workspace: public
+
+workflow:
+  dag:
+    - name: soda-branch-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO
+
+        stackSpec:
+          inputs:
+            - dataset: 
+              options:
+                engine: 
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+
+              checks:
+
+         
+                - schema:
+                    name: BRANCH_ID should be string
+                    fail:
+                      when wrong column type:
+                        BRANCH_ID: varchar
+                    attributes:
+                      category: Schema
+
+                - missing_count(BRANCH_ID) = 0:
+                    name: Branch ID should not be null
+                    attributes:
+                      category: Completeness
+
+                - missing_count(REGION_CODE) = 0:
+                    name: Region code should not be null
+                    attributes:
+                      category: Completeness
+
+         
+                - duplicate_count(BRANCH_ID) = 0:
+                    name: Branch ID must be unique
+                    attributes:
+                      category: Uniqueness
+
+                - duplicate_count(OFFICE_CODE) = 0:
+                    name: Office code must be unique
+                    attributes:
+                      category: Uniqueness
+
+            

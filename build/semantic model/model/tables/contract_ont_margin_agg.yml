@@ -1,0 +1,36 @@
+tables:
+  - name: contract_ont_margin_agg
+    sql: {{ load_sql('contarct_ont_margin_agg') }}
+    description: >
+      Defines contract-level financial performance metrics including
+      maintenance revenue, maintenance margin, and open order exposure.
+      Used to prioritize modernization campaigns based on revenue and margin impact.
+    public: true
+
+    joins:
+      - name: units
+        relationship: one_to_many
+        sql: "{TABLE.CONTRACT_ID} = {units.CONTRACT_EID}"
+
+    dimensions:
+      - name: contract_id
+        type: string
+        column: CONTRACT_ID
+        primary_key: true
+        public: true
+        description: "Unique identifier for the contract."
+
+      - name: ONT_MARGIN_PERCENT_1Y
+        type: number
+        column: ONT_MARGIN_PERCENT_1Y
+        description: "ONT Margin percent for 1 year."
+
+      - name: ONT_MARGIN_PERCENT_3Y
+        type: number
+        column: ONT_MARGIN_PERCENT_3Y
+        description: "ONT Margin percent for 3 years."
+
+      - name: ONT_MARGIN_PERCENT_5Y
+        type: number
+        column: ONT_MARGIN_PERCENT_5Y
+        description: "ONT Margin percent for 5 years."

@@ -1,0 +1,74 @@
+name: soda-buildings-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the BUILDINGS table
+workspace: public
+
+workflow:
+  dag:
+    - name: soda-buildings-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO
+
+        stackSpec:
+          inputs:
+            - dataset: 
+              options:
+                engine: 
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+
+              checks:
+
+       
+                - missing_count(BUILDING_EID) = 0:
+                    name: Building EID should not be null
+                    attributes:
+                      category: Completeness
+
+                - duplicate_count(BUILDING_EID) = 0:
+                    name: Building EID must be unique
+                    attributes:
+                      category: Uniqueness
+
+
+                - invalid_count(ACTIVE_IN) = 0:
+                    valid values: [Y, N]
+                    name: ACTIVE_IN must be Y or N
+                    attributes:
+                      category: Validity
+
+
+                - min(UNIT_COUNT) >= 0:
+                    name: Unit count should not be negative
+                    attributes:
+                      category: Validity
+
+
+  
+
+
+                - invalid_count(GEO_TYPE) = 0:
+                    valid values: [Urban, Semi-Urban, Rural]
+                    name: GEO_TYPE must be valid
+                    attributes:
+                      category: Validity
+
+                - max(UPDATE_DATE) <= now():
+                    name: Update date should not be in the future
+                    attributes:
+                      category: Accuracy

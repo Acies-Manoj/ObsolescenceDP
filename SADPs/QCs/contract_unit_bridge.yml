@@ -1,0 +1,80 @@
+name: soda-contract-unit-summary-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the CONTRACT_UNIT_SUMMARY table
+workspace: public
+
+workflow:
+  dag:
+    - name: soda-contract-unit-summary-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO
+
+        stackSpec:
+          inputs:
+            - dataset: 
+              options:
+                engine:
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+
+              checks:
+
+              
+                - missing_count(CONTRACT_UNIT_SUMMARY_GOLDEN_RECORD_ID) = 0:
+                    name: Golden Record ID should not be null
+                    attributes:
+                      category: Completeness
+
+                - duplicate_count(CONTRACT_UNIT_SUMMARY_GOLDEN_RECORD_ID) = 0:
+                    name: Golden Record ID must be unique
+                    attributes:
+                      category: Uniqueness
+
+
+                - missing_count(UNIT_EID) = 0:
+                    name: UNIT_EID should not be null
+                    attributes:
+                      category: Completeness
+
+                - missing_count(CONTRACT_EID) = 0:
+                    name: CONTRACT_EID should not be null
+                    attributes:
+                      category: Completeness
+
+                - missing_count(BUILDING_EID) = 0:
+                    name: BUILDING_EID should not be null
+                    attributes:
+                      category: Completeness
+
+                - missing_count(CUSTOMER_EID) = 0:
+                    name: CUSTOMER_EID should not be null
+                    attributes:
+                      category: Completeness
+
+
+                - invalid_count(CONTRACT_STATUS_NM) = 0:
+                    valid values: [Active, Expired, Cancelled, Pending Renewal]
+                    name: Contract status must be valid
+                    attributes:
+                      category: Validity
+
+
+            
+
+
+         

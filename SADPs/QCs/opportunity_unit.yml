@@ -1,0 +1,61 @@
+name: soda-opportunity-quality
+version: v1
+type: workflow
+tags:
+  - workflow
+  - soda-checks
+description: Applying quality checks for the OPPORTUNITY table
+workspace: public
+
+workflow:
+  dag:
+    - name: soda-opportunity-quality
+      spec:
+        stack: soda+python:1.0
+        compute: runnable-default
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 250Mi
+          limits:
+            cpu: 1000m
+            memory: 250Mi
+        logLevel: INFO
+
+        stackSpec:
+          inputs:
+            - dataset:
+              options:
+                engine: 
+                clusterName: 
+              profile:
+                columns:
+                  - include *
+
+              checks:
+
+    
+                - missing_count(OPPORTUNITY_ID) = 0:
+                    name: Opportunity ID should not be null
+                    attributes:
+                      category: Completeness
+
+                - duplicate_count(OPPORTUNITY_ID) = 0:
+                    name: Opportunity ID must be unique
+                    attributes:
+                      category: Uniqueness
+
+
+
+                - invalid_count(PRIORITY) = 0:
+                    valid values: [Low, Medium, High]
+                    name: Priority must be valid
+                    attributes:
+                      category: Validity
+
+      
+                - max(ACTUALCLOSEDATE) <= current_date:
+                    name: Actual close date should not be in the future
+                    attributes:
+                      category: Accuracy
+
