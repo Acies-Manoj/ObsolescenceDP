@@ -1,6 +1,6 @@
 tables:
   - name: contract_ont_margin_agg
-    sql: {{ load_sql('contarct_ont_margin_agg') }}
+    sql: {{ load_sql('contract_ont_margin_agg') }}
     description: >
       Defines contract-level financial performance metrics including
       maintenance revenue, maintenance margin, and open order exposure.
