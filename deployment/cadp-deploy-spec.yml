@@ -1,0 +1,59 @@
+name: obs-man-cadp-spec
+version: v1beta
+entity: product
+type: data
+tags:
+  - DPUsecase.Obsolescence
+  - DPTier.Consumer Aligned
+description: This is a source aligned data procuct for accounts.
+refs:
+  - title: 'Workspace Info'
+    href: https://dataos.info/interfaces/cli/command_reference/#workspace
+
+v1beta:
+  data:
+    meta:
+      title: ObsolescenceDP
+      sourceCodeUrl: https://github.com/Acies-Manoj/ObsolescenceDP
+ 
+    collaborators:
+      - name: vigneshadhikesavan
+        description: owner
+    
+    resource:
+      refType: dataos
+      ref: bundle:v1beta:obs-man-cadp-bundle
+
+    inputs:
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/CONTRACT_UNIT_BRIDGE
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/UNITS
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/ACCOUNTS
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/BRANCH
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/BUILDINGS
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/CONTRACT_ONT_MARGIN_AGG
+
+      - refType: dataos
+        ref: dataos://sampleobs:SAMPLE_MANOJ/OPPORTUNITY_UNIT
+
+    ports:
+      lens:
+        ref: lens:v1alpha:sample_obs_lens:public
+        refType: dataos
+
+      # talos:
+      #   - ref: service:v1:product-affinity-api:public
+      #     refType: dataos
+
+
+      

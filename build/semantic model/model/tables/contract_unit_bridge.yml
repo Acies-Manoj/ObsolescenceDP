@@ -3,8 +3,7 @@ tables:
     sql: {{ load_sql('contract_unit_bridge') }}
     description: >
       Bridge table connecting units, contracts, buildings, and customers.
-      Enables cross-domain linkage between installed base, financial contracts,
-      and account ownership for campaign and modernization analysis.
+      Enables cross-domain linkage between installed base, financial contracts.
     public: true
 
     joins:

@@ -1,0 +1,40 @@
+name: obs-man-cadp-bundle
+version: v1beta
+type: bundle
+tags:
+  - dataproduct
+description: This bundle resource is Obsolescence CADP.
+layer: "user"
+bundle:
+  resources:
+    - id: lens
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\build\semantic model\deployment.yml
+      workspace: public
+
+    - id: quality_units
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\units.yml
+      workspace: public
+    
+    - id: quality_accounts
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\accounts.yml
+      workspace: public
+
+    - id: quality_branch
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\branch.yml
+      workspace: public
+      
+    - id: quality_buildings
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\buildings.yml
+      workspace: public
+
+    - id: quality_contract_ont_margin_agg
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\contract_ont_margin_agg.yml
+      workspace: public
+
+    - id: quality_contract_unit_bridge
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\contract_unit_bridge.yml
+      workspace: public
+
+    - id: quality_opportunity_unit
+      file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\opportunity_unit.yml
+      workspace: public

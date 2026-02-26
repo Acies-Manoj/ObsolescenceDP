@@ -3,7 +3,7 @@ tables:
     sql: {{ load_sql('buildings') }}
     description: Defines building-level master data including geographic location,
       ownership, facility classification, and installed unit distribution.
-      Used for portfolio concentration analysis and campaign targeting by location.
+
     public: true
 
     dimensions:
@@ -103,11 +103,6 @@ tables:
         type: time
         column: UPDATE_DATE
         description: "Last update date of the building record."
-
-      - name: building_row_number
-        type: number
-        column: BUILDING_ROW_NUMBER
-        description: "Row number identifier for building record."
 
     measures:
       - name: total_buildings

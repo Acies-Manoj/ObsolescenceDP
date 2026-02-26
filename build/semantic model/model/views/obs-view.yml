@@ -1,0 +1,132 @@
+views:
+  - name: obsolescence_sample_view
+    description: >
+      A View that identifies and analyzes obsolete unit data.
+    public: true
+    meta:
+      title: Obsolescence Sample View
+      tags:
+        - DPUsecase.Obsolescence
+        - DPTier.Consumer Aligned
+      metric:
+        expression: "*/45  * * * *"
+        timezone: "UTC"
+        window: "day"
+        excludes: 
+         - purchases
+    tables:
+      - join_path: accounts
+        prefix: true
+        includes:
+          - account_id
+          - account_name
+          - account_number
+          - customer_id
+          - branch
+          - portfolio_owner
+          - primary_contact_name
+          - primary_contact_email1
+          - primary_contact_phone1
+      - join_path: branch
+        prefix: true
+        includes:
+          - BRANCH_ID
+          - REGION_CODE
+          - SUBREGION_CODE
+          - OFFICE_CODE
+      - join_path: contract_ont_margin_agg
+        prefix: true
+        includes:
+          - contract_id
+          - ONT_MARGIN_PERCENT_1Y
+          - ONT_MARGIN_PERCENT_3Y
+          - ONT_MARGIN_PERCENT_5Y
+      - join_path: contract_unit_bridge
+        prefix: true
+        includes:
+          - contract_unit_summary_golden_record_id
+          - unit_eid
+          - building_eid
+          - customer_eid
+          - billto_customer_eid
+          - contract_eid
+          - contact_eid
+          - contract_unit_legacy_id
+          - sscrm_contract_auto_id
+          - csodm_customer_id
+          - contract_status_nm
+      - join_path: units
+        prefix: true
+        includes:
+          - UNIT_ID,
+          - REALISTIC_UNIT_DATA_INDICATOR,
+          - UNIT_GOLDEN_RECORD_ID,
+          - UNIT_NUMBER,
+          - UNIT_LEGACY_ID,
+          - CONTRACT_EID,
+          - GSSCORE_CONTRACT,
+          - MODEL_ID,
+          - MODEL_NAME,
+          - MANUFACTURER_NAME,
+          - IS_OTIS_UNIT,
+          - PRODUCT_FAMILY,
+          - PRODUCT_TYPE,
+          - PRODUCT_NAME,
+          - CAPACITY,
+          - CAPACITY_UNITS,
+          - INSTALLATION_DATE,
+          - MODERNIZATION_DATE,
+          - GOVERNMENT_NUMBER,
+          - NIS_START_DATE,
+          - NIS_END_DATE,
+          - CONTROLLER_TYPE,
+          - CONTROLLER_NAME,
+          - MACHINE_NAME,
+          - RISE,
+          - SPEED,
+          - SPEED_UNIT,
+          - NUMBER_OF_STOPS,
+          - NUMBER_OF_STOPS_GROUP,
+          - ELEVATOR_USAGE_TYPE,
+          - UNIT_STATUS,
+          - UNIT_PHONE_NUMBER,
+          - BUILDING_EID,
+          - CAR_ENTRANCE_COUNT,
+          - OPERATING_FIREMAN,
+          - NUMBER_OF_HOISTWAY_OPENINGS,
+          - EQUIPMENT_TYPE,
+          - PRODUCT_CLASS,
+          - PRODUCT_CODE,
+          - HOIST_WAY_DOOR_WIDTH_NUMBER,
+          - GSSCORE_EQUIPMENT_OF_UNIT_NAME,
+          - MACHINE_NUMBER,
+          - STATUS_CODE,
+          - OTIS_ONE_HARDWARE_INSTALLED,
+          - MODERNIZATION_FLAG,
+          - GSSCORE_BUILDING,
+          - INSERTED_DATE,
+          - LAST_VISIT_DATE,
+          - TOTAL_VISITS,
+          - DAYS_SINCE_LAST_VISIT,
+          - PARTS_REPLACED_NUMBER,
+          - PARTS_REPLACED_COST,
+          - TOTAL_QUANTITY_SHIPPED,
+          - UPDATED_DATE
+
+      - join_path: opportunity_unit
+        prefix: true
+        includes:
+          - PRIORITY,
+          - OPPORTUNITY_ID,
+          - OPPORTUNITY_NAME,
+          - OPPORTUNITY_STATUS,
+          - GSSCORE_ISCANCELLATIONALERT,
+          - GSSCORE_PROPOSALDELIVERED,
+          - ACTUALCLOSEDATE,
+          - QUOTE_ID,
+          - GSSCORE_TORDERPRIMARYPRODUCT,
+          - GSSCORE_BUSINESSSTREAM,
+          - GSSCORE_UTMCAMPAIGN,
+          - GSSCORE_UNITID,
+          - UNIT_ERP_NUMBER,
+          - CONTRACT_ERP_NUMBER

@@ -1,15 +1,15 @@
-name: soda-contract-unit-summary-quality
+name: soda-contract-unit-quality
 version: v1
 type: workflow
 tags:
   - workflow
   - soda-checks
-description: Applying quality checks for the CONTRACT_UNIT_SUMMARY table
+description: Applying quality checks for the CONTRACT_UNIT_BRIDGE table
 workspace: public
 
 workflow:
   dag:
-    - name: soda-contract-unit-summary-quality
+    - name: soda-contract-unit-bridge-quality
       spec:
         stack: soda+python:1.0
         compute: runnable-default
@@ -24,10 +24,10 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/CONTRACT_UNIT_BRIDGE
               options:
-                engine:
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *
@@ -51,20 +51,6 @@ workflow:
                     attributes:
                       category: Completeness
 
-                - missing_count(CONTRACT_EID) = 0:
-                    name: CONTRACT_EID should not be null
-                    attributes:
-                      category: Completeness
-
-                - missing_count(BUILDING_EID) = 0:
-                    name: BUILDING_EID should not be null
-                    attributes:
-                      category: Completeness
-
-                - missing_count(CUSTOMER_EID) = 0:
-                    name: CUSTOMER_EID should not be null
-                    attributes:
-                      category: Completeness
 
 
                 - invalid_count(CONTRACT_STATUS_NM) = 0:

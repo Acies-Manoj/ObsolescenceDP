@@ -4,7 +4,6 @@ tables:
     description: >
       Defines contract-level financial performance metrics including
       maintenance revenue, maintenance margin, and open order exposure.
-      Used to prioritize modernization campaigns based on revenue and margin impact.
     public: true
 
     joins:

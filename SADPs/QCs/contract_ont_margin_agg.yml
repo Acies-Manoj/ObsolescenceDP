@@ -24,10 +24,10 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/CONTRACT_ONT_MARGIN_AGG
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *

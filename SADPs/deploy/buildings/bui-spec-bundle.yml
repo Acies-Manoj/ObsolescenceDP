@@ -7,6 +7,6 @@ description: This bundle resource is for the Buildings SADP.
 layer: "user"
 bundle:
   resources:
-    - id: quality_purchase
+    - id: quality_buildings
       file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\buildings.yml
       workspace: public

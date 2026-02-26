@@ -24,10 +24,10 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/BUILDINGS
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *
@@ -57,9 +57,6 @@ workflow:
                     name: Unit count should not be negative
                     attributes:
                       category: Validity
-
-
-  
 
 
                 - invalid_count(GEO_TYPE) = 0:

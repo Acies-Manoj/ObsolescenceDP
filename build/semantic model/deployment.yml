@@ -1,0 +1,69 @@
+version: v1alpha
+name: "sample_obs_lens"
+layer: user
+type: lens
+tags:
+  - lens
+description: This semantic model provides insights for obsolescence use case.
+lens:
+  compute: runnable-default
+  secrets:
+    - name: obs-man-github-cred
+      allKeys: true
+  source:
+    type: minerva
+    name: miniature
+    catalog: icebase
+  repo:
+    url: https://github.com/Acies-Manoj/ObsolescenceDP
+    lensBaseDir: ObsolescenceDP/build/semantic model/model 
+    syncFlags:
+      - --ref=main
+
+  api:   # optional
+    replicas: 1 # optional
+    logLevel: info  # optional
+    # envs:
+    #   LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+  worker: # optional
+    replicas: 1 # optional
+    logLevel: debug  # optional
+    # envs:
+    #   LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+  router: # optional
+    logLevel: info  # optional
+    # envs:
+    #   LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+  # iris:
+  #   logLevel: info
+  #   resources:
+  #     requests:
+  #       cpu: 200m
+  #       memory: 256Mi
+  #     limits:
+  #       cpu: 1000m
+  #       memory: 1024Mi
+
+  metric:
+    logLevel: info

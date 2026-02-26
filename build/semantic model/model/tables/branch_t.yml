@@ -4,7 +4,7 @@ tables:
     description: >
       Defines organizational branch hierarchy including region,
       subregion, global business office, and office details.
-      Used for geographic segmentation and campaign performance analysis.
+
     public: true
 
     dimensions:
@@ -63,13 +63,7 @@ tables:
 
     segments:
       - name: region_emea
-        sql: "{region} = 'EMEA'"
+        sql: "{region} = 'NA'"
         description: "Branches in EMEA region."
 
-      - name: region_apac
-        sql: "{region} = 'APAC'"
-        description: "Branches in APAC region."
 
-      - name: region_americas
-        sql: "{region} = 'AMERICAS'"
-        description: "Branches in Americas region."

@@ -24,10 +24,10 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/UNITS
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02 
               profile:
                 columns:
                   - include *
@@ -45,8 +45,6 @@ workflow:
                     attributes:
                       category: Uniqueness
 
-
-             
                 - missing_count(CONTRACT_EID) = 0:
                     name: Contract must exist for each unit
                     attributes:
@@ -60,7 +58,7 @@ workflow:
 
             
                 - invalid_count(UNIT_STATUS) = 0:
-                    valid values: [Active, Inactive, Decommissioned]
+                    valid values: [Active, In Service, Out of Service, Under Modernization]
                     name: Unit status must be valid
                     attributes:
                       category: Validity

@@ -24,16 +24,15 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/BRANCH
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *
 
               checks:
-
          
                 - schema:
                     name: BRANCH_ID should be string

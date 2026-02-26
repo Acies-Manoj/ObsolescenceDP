@@ -7,6 +7,6 @@ description: This bundle resource is for the Contract Unit Bridge SADP.
 layer: "user"
 bundle:
   resources:
-    - id: quality_purchase
+    - id: quality_contract_unit_bridge
       file: C:\Users\Manoj\Desktop\ObsolescenceDP\SADPs\QCs\contract_unit_bridge.yml
       workspace: public

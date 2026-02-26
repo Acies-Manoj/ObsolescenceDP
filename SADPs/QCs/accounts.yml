@@ -22,10 +22,10 @@ workflow:
         logLevel: INFO # WARNING, ERROR, DEBUG
         stackSpec:
           inputs:
-            - dataset: 
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/ACCOUNTS
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *

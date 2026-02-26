@@ -24,16 +24,15 @@ workflow:
 
         stackSpec:
           inputs:
-            - dataset:
+            - dataset: dataos://sampleobs:SAMPLE_MANOJ/OPPORTUNITY_UNIT
               options:
-                engine: 
-                clusterName: 
+                engine: minerva
+                clusterName: snowflakeclustertest02
               profile:
                 columns:
                   - include *
 
               checks:
-
     
                 - missing_count(OPPORTUNITY_ID) = 0:
                     name: Opportunity ID should not be null

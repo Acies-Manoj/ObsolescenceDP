@@ -3,7 +3,6 @@ version: v1beta
 entity: product
 type: data
 tags:
-  - DPDomain.Marketing
   - DPUsecase.Obsolescence
   - DPTier.Source Aligned
 description: This is a source aligned data procuct for customer ont margin agg.
@@ -15,39 +14,17 @@ v1beta:
   data:
     meta:
       title: Customer ONT Margin Aggregation
-      sourceCodeUrl: https://github.com/Acies-Manoj/customer-behavior-dp
- 
+      sourceCodeUrl: https://github.com/Acies-Manoj/ObsolescenceDP
+
     collaborators:
       - name: vigneshadhikesavan
         description: owner
     
     resource:
       refType: dataos
-      ref: bundle:v1beta:customerbehavior-bundle
+      ref: bundle:v1beta:coma-dp-bundle
 
     inputs:
       - refType: dataos
-        ref: dataset:icebase:training:customer_data
+        ref: dataset:TRAINING_OBS:SAMPLE_MANOJ:CONTRACT_ONT_MARGIN_AGG
 
-      - refType: dataos
-        ref: dataset:icebase:training:purchase_data
-
-
-    outputs:
-      - refType: dataos
-        ref: dataset:icebase:training:customer_purchase_summary_table
-
-      - refType: dataos
-        ref: dataset:icebase:training:customer_segments_table
-
-    ports:
-      lens:
-        ref: lens:v1alpha:customerbehavior:public
-        refType: dataos
-
-      # talos:
-      #   - ref: service:v1:product-affinity-api:public
-      #     refType: dataos
-
-
-      
