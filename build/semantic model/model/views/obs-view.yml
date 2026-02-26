@@ -13,7 +13,7 @@ views:
         timezone: "UTC"
         window: "day"
         excludes: 
-         - purchases
+      
     tables:
       - join_path: accounts
         prefix: true
