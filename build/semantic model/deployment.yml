@@ -12,8 +12,8 @@ lens:
       allKeys: true
   source:
     type: minerva
-    name: miniature
-    catalog: icebase
+    name: snowflakeclustertest02
+    catalog: sampleobs
   repo:
     url: https://github.com/Acies-Manoj/ObsolescenceDP
     lensBaseDir: ObsolescenceDP/build/semantic model/model 
