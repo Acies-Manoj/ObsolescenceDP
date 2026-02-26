@@ -62,7 +62,7 @@ tables:
         description: "Total number of branches."
 
     segments:
-      - name: region_emea
+      - name: region_NA
         sql: "{region} = 'NA'"
         description: "Branches in EMEA region."
 
