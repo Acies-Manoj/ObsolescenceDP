@@ -1,5 +1,5 @@
 version: v1alpha
-name: "sample_obs_lens"
+name: "sample-obs-lens"
 layer: user
 type: lens
 tags:
